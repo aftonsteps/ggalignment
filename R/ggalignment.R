@@ -15,6 +15,15 @@
 #' @param alignment
 #' @param background
 #' @param alignment_coords
+#' @param linetype the linetype for the box borders, which follows the ggplot2
+#' allowable values for linetype for geom_rect() (e.g. blank, solid,
+#' dashed, dotted, dotdash, longdash, twodash)
+#' @param linecolor the color for the bounding boxes of the alignments, defaults
+#' to black, and must be a named color such as "black"
+#' @param background_color the background color for the entire plot, defaults to
+#' white and must be a named color such as "white"
+#' @param background_border the color of the solid-line bounding box on the entire
+#' plot, defaults to NA and must be either NA or a named color such as "black"
 #'
 #' @return
 #' @export
@@ -22,6 +31,12 @@
 #' @examples
 
 ggalignment <- function(alignment,
+                        linetype = "dashed",
+                        linecolor = "black",
+                        font_family = "Arial",
+                        font_color = "black",
+                        background_color = "white",
+                        background_border = NA,
                         background = ggalignment::dotted_lines_bg,
                         alignment_coords = ggalignment::alignment_vals) {
   alignment_data <-
@@ -38,62 +53,46 @@ ggalignment <- function(alignment,
                                                 "neutral evil",
                                                 "chaotic evil")))
 
-  # d <-
-  #   tibble::tibble(quadrant_name = c("lawful_good",
-  #                                    "lawful_neutral",
-  #                                    "lawful_evil",
-  #                                    "neutral_good",
-  #                                    "true_neutral",
-  #                                    "neutral_evil",
-  #                                    "chaotic_good",
-  #                                    "chaotic_neutral",
-  #                                    "chaotic_evil")) %>%
-  #   dplyr::mutate(quadrant_name = forcats::fct_inorder(quadrant_name)) %>%
-  #   ggplot2::ggplot() +
-  #   ggplot2::facet_wrap(~quadrant_name, nrow = 3, dir = "v") +
-  #   ggplot2::theme_light()
+  if (! "x" %in% colnames(alignment_data) &
+      ! "y" %in% colnames(alignment_data)) {
+    alignment_data$x <- alignment_data$y <- rep(0.5)
+    alignment_data <-
+      alignment_data %>%
+      dplyr::group_by(alignment) %>%
+      dplyr::mutate(count = dplyr::n()) %>%
+      dplyr::group_by(count) %>%
+      dplyr::mutate(per_row = sqrt((ceiling(sqrt(count)))^2)) %>%
+      dplyr::mutate(row_seq = rep(1:max(per_row), max(count)/max(per_row))) %>%
+      dplyr::mutate(col_seq = rep(1:max(per_row), each = max(per_row))) %>%
+      dplyr::mutate(row_seq = (row_seq - mean(row_seq)),
+                    col_seq = (col_seq - mean(col_seq))) %>%
+      dplyr::mutate(x = x + row_seq, y = y + col_seq)
+  }
 
   g <-
-    ggplot2::ggplot(data = alignment_data) +
-    # ggplot2::ggplot(data = alignment, mapping = ggplot2::aes(x = xmin,
-    #                                                          y = ymin)) +
-    # ggplot2::geom_line() +
-    ggplot2::coord_cartesian(xlim = c(-100, 100),
-                             ylim = c(-100, 100)) +
+    ggplot2::ggplot(data = alignment_data,
+                    mapping = ggplot2::aes(x = row_seq,
+                                           y = col_seq,
+                                           image = img)) +
     ggplot2::scale_y_continuous(n.breaks = 20) +
     ggplot2::facet_wrap(~alignment, nrow = 3) +
-    ggimage::geom_image(mapping = ggplot2::aes(x = 0,
-                                               y = 0,
-                                               image = img),
-                        size = 0.5,
-                        asp = 1)
-
-  # img <- png::readPNG(alignment$img[1])
-  # g <-
-  #   g +
-  #   ggplot2::annotation_custom(grob = grid::rasterGrob(img),
-  #                              xmin = -30,
-  #                              xmax = 30,
-  #                              ymin = -30,
-  #                              ymax = 30)
-
-  # for (idx in 1:nrow(alignment)) {
-  #   img <- png::readPNG(alignment$img[idx])
-  #   g <-
-  #     g +
-  #     ggplot2::annotation_custom(grob = grid::rasterGrob(img),
-  #                                xmin = alignment$xmin[idx],
-  #                                xmax = alignment$xmax[idx],
-  #                                ymin = alignment$ymin[idx],
-  #                                ymax = alignment$ymax[idx])
-  # }
-
-  g <-
-    g +
+    ggimage::geom_image(size = 0.5) +
+    ggplot2::coord_fixed(xlim = c(-1, 1),
+                         ylim = c(-1, 1)) +
     ggplot2::theme_void() +
-    ggplot2::theme(axis.text = ggplot2::element_text(color = "black"),
-                   axis.ticks = ggplot2::element_line(color = "black"))
+    ggplot2::theme(panel.border =
+                     ggplot2::element_rect(color = linecolor,
+                                           fill = NA,
+                                           linetype = linetype),
+                   strip.text =
+                     ggplot2::element_text(margin =
+                                             ggplot2::margin(0, 0, 8, 0),
+                                           family = font_family,
+                                           color = font_color),
+                   plot.margin = ggplot2::unit(c(0, 5, 5, 5), unit = "pt"),
+                   plot.background =
+                     ggplot2::element_rect(fill = background_color,
+                                           color = background_border))
 
   return(g)
-  #return(ggimage::ggbackground(gg = g, background = background))
 }
