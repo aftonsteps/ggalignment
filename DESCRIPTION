@@ -1,19 +1,23 @@
-Package: ggalignment
 Type: Package
-Title: What the Package Does (Title Case)
+Package: ggalignment
+Title: Plots D&D-style alignment charts
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Afton Coombs
+Maintainer: Afton Coombs <aftoncoombs@gmail.com>
+Description: D&D alignment charts show 9 boxes with values for
+    good through evil and values for chaotic through lawful. This package
+    easily creates these alignment charts from user-provided image paths
+    and alignment values.
 License: What license is it under?
-Encoding: UTF-8
-LazyData: true
 Depends: 
     R (>= 2.10)
-RoxygenNote: 7.1.1
 Imports: 
     magrittr
 Suggests: 
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1

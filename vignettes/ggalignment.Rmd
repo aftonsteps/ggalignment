@@ -1,0 +1,81 @@
+---
+title: "ggalignment"
+author: "Afton Coombs"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE, echo = FALSE}
+new_wd <- gsub("/vignettes", "", getwd())
+new_wd
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_knit$set(root.dir = new_wd)
+```
+
+## Introduction
+The `ggalignment` package does one thing -- it plot D&D-style alignment charts. If you're unfamiliar, this is what they look like:
+
+```{r example-alignment-plot}
+library(ggalignment)
+library(magrittr)
+ggalignment(alignment = data.frame(img = character(),
+                                   alignment = character()))
+```
+
+Typically, each box contains an image of a person or thing. Each element of the chart should have a value in the x direction
+that represents how lawful or chaotic they are, and a value in the y direction that represents how good or evil they are. In this example, I've used my cats, which you can find in the dataset `align_cats` that is part of this package.
+
+## Simple Plotting Alignment
+To plot one image per box, you only need to pass in a `data.frame` containing two columns, `img` and `alignment`, which represent respectively the image path and the alignment name. For example:
+
+```{r example-plotting-data}
+align_cats
+```
+If you pass this to the `ggalignment()` function, it will plot each of these images in the center of each box.
+
+```{r example-alignment-plot-with-data}
+ggalignment(align_cats)
+```
+
+You can also provide images of different shapes (not just circles) and these will likewise center on the origin or use the `x` and `y` columns if provided.
+
+```{r example-plot-with-rect}
+align_cats_rect <-
+  align_cats %>% 
+  dplyr::mutate(img = c(align_cats$img[1:3], 
+                        "data/img/gray 2.png"))
+
+ggalignment(align_cats_rect)
+```
+
+## Plotting Alignment with Coordinates
+If you have more than one image per alignment box, or if you would just like further control over the placement of the image in the box, you can also provide columns `x` and `y` in your `alignment` data passed to `ggalignment()` which will specify the x and y coordinates for each image.
+
+Within each box, the coordinate system extends from -1 to 1 in both axes, and is centered at the origin. We can modify the default plot by providing `x` and `y` columns.
+
+```{r example-plot-with-coord}
+align_cats_with_coords <-
+  align_cats %>%
+  dplyr::mutate(x = c(0.5, -0.5, -0.5, 0.5),
+                y = c(-0.5, -0.5, 0.5, 0.5))
+ggalignment(alignment = align_cats_with_coords)
+```
+
+This also works if there are multiple images per box, and `x` and `y` columns are required in this case to prevent two images occupying the same space at the origin and masking each other.
+
+```{r multi-plot-example}
+align_cats_with_multi_image <-
+  align_cats %>%
+  dplyr::mutate(alignment = rep("chaotic neutral")) %>%
+  dplyr::mutate(x = c(0.5, -0.5, -0.5, 0.5),
+                y = c(-0.5, -0.5, 0.5, 0.5))
+ggalignment(alignment = align_cats_with_multi_image)
+```
+
