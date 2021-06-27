@@ -1,22 +1,15 @@
-## 1. alignment = data.frame containing a column for image and a column for
-## alignment
-##
-## 2. a vector for images, a vector for alignments
-# oberon <- png::readPNG("data/img/obie.png")
-# jerry <- png::readPNG("data/img/jerry 2.png")
-
 #' ggalignment
 #'
 #' Creates a D&D alignment chart
 #'
 #' @param alignment
-#' @param background
-#' @param alignment_coords
-#' @param linetype the linetype for the box borders, which follows the ggplot2
+#' @param line_type the linetype for the box borders, which follows the ggplot2
 #' allowable values for linetype for geom_rect() (e.g. blank, solid,
 #' dashed, dotted, dotdash, longdash, twodash)
-#' @param linecolor the color for the bounding boxes of the alignments, defaults
+#' @param line_color the color for the bounding boxes of the alignments, defaults
 #' to black, and must be a named color such as "black"
+#' @param font_family the font family to be used on the alignment labels
+#' @param font_color the font color to be used on the alignment labels
 #' @param background_color the background color for the entire plot, defaults to
 #' white and must be a named color such as "white"
 #' @param background_border the color of the solid-line bounding box on the entire
@@ -28,14 +21,12 @@
 #' @examples
 
 ggalignment <- function(alignment,
-                        linetype = "dashed",
-                        linecolor = "black",
+                        line_type = "dashed",
+                        line_color = "black",
                         font_family = "Arial",
                         font_color = "black",
                         background_color = "white",
-                        background_border = NA,
-                        background = ggalignment::dotted_lines_bg,
-                        alignment_coords = ggalignment::alignment_vals) {
+                        background_border = NA) {
   ## Check for column names
   if (! "alignment" %in% colnames(alignment) |
       ! "img" %in% colnames(alignment)) {
@@ -57,7 +48,7 @@ ggalignment <- function(alignment,
 
   alignment_data <-
     alignment %>%
-    dplyr::full_join(alignment_coords, by = "alignment") %>%
+    dplyr::full_join(ggalignment::alignment_vals, by = "alignment") %>%
     dplyr::mutate(alignment = factor(alignment,
                                      levels = c("lawful good",
                                                 "neutral good",
@@ -86,9 +77,9 @@ ggalignment <- function(alignment,
                          ylim = c(-1, 1)) +
     ggplot2::theme_void() +
     ggplot2::theme(panel.border =
-                     ggplot2::element_rect(color = linecolor,
+                     ggplot2::element_rect(color = line_color,
                                            fill = NA,
-                                           linetype = linetype),
+                                           linetype = line_type),
                    strip.text =
                      ggplot2::element_text(margin =
                                              ggplot2::margin(0, 0, 8, 0),

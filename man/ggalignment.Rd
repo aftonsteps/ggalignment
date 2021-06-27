@@ -6,23 +6,25 @@
 \usage{
 ggalignment(
   alignment,
-  linetype = "dashed",
-  linecolor = "black",
+  line_type = "dashed",
+  line_color = "black",
   font_family = "Arial",
   font_color = "black",
   background_color = "white",
-  background_border = NA,
-  background = ggalignment::dotted_lines_bg,
-  alignment_coords = ggalignment::alignment_vals
+  background_border = NA
 )
 }
 \arguments{
-\item{linetype}{the linetype for the box borders, which follows the ggplot2
+\item{line_type}{the linetype for the box borders, which follows the ggplot2
 allowable values for linetype for geom_rect() (e.g. blank, solid,
 dashed, dotted, dotdash, longdash, twodash)}
 
-\item{linecolor}{the color for the bounding boxes of the alignments, defaults
+\item{line_color}{the color for the bounding boxes of the alignments, defaults
 to black, and must be a named color such as "black"}
+
+\item{font_family}{the font family to be used on the alignment labels}
+
+\item{font_color}{the font color to be used on the alignment labels}
 
 \item{background_color}{the background color for the entire plot, defaults to
 white and must be a named color such as "white"}

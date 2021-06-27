@@ -36,7 +36,7 @@ test_that("error does not occur if multiple images per box and coords", {
 
 test_that("error if alignmnet data missing 'alignment' column", {
   expect_error(ggalignment(align_cats %>% dplyr::select(-alignment)),
-               "alignment dataset requires columns 'img' and 'alingment'")
+               "alignment dataset requires columns 'img' and 'alignment'")
 })
 
 test_that("error if alignmnet data missing 'img' column", {
