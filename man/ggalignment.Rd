@@ -44,5 +44,5 @@ a ggplot object containing the alignment chart
 Creates a D&D alignment chart
 }
 \examples{
-ggalignment(alignment = align_cats)
+ggalignment(alignment = align_cats())
 }

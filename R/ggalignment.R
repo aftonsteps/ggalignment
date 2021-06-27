@@ -22,13 +22,14 @@
 #' @export
 #'
 #' @examples
-#' ggalignment(alignment = align_cats)
+#' ggalignment(alignment = align_cats())
 
 ggalignment <- function(alignment,
                         line_type = "dashed",
                         line_color = "black",
                         font_family = NULL,
                         font_color = "black",
+                        font_size = NULL,
                         background_color = "white",
                         background_border = NA) {
   ## Check for column names
@@ -89,6 +90,7 @@ ggalignment <- function(alignment,
                      ggplot2::element_text(margin =
                                              ggplot2::margin(0, 0, 8, 0),
                                            family = font_family,
+                                           size = font_size,
                                            color = font_color),
                    plot.margin = ggplot2::unit(c(0, 5, 5, 5), unit = "pt"),
                    plot.background =
