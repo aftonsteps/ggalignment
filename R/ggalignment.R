@@ -18,10 +18,11 @@
 #' @param background_border the color of the solid-line bounding box on the entire
 #' plot, defaults to NA and must be either NA or a named color such as "black"
 #'
-#' @return
+#' @return a ggplot object containing the alignment chart
 #' @export
 #'
 #' @examples
+#' ggalignment(alignment = align_cats)
 
 ggalignment <- function(alignment,
                         line_type = "dashed",

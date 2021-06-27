@@ -38,8 +38,11 @@ white and must be a named color such as "white"}
 plot, defaults to NA and must be either NA or a named color such as "black"}
 }
 \value{
-
+a ggplot object containing the alignment chart
 }
 \description{
 Creates a D&D alignment chart
+}
+\examples{
+ggalignment(alignment = align_cats)
 }
