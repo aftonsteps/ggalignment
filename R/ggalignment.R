@@ -2,7 +2,10 @@
 #'
 #' Creates a D&D alignment chart
 #'
-#' @param alignment
+#' @param alignment a data.frame containing the data to be plotted, requiring
+#' columns `img` (for image path) and `alignment`, and optionally `x` and `y`
+#' specifying the coordinates for each image, where each box has coordinate limits
+#' from -1 to 1 in both axes.
 #' @param line_type the linetype for the box borders, which follows the ggplot2
 #' allowable values for linetype for geom_rect() (e.g. blank, solid,
 #' dashed, dotted, dotdash, longdash, twodash)
@@ -23,7 +26,7 @@
 ggalignment <- function(alignment,
                         line_type = "dashed",
                         line_color = "black",
-                        font_family = "Arial",
+                        font_family = NULL,
                         font_color = "black",
                         background_color = "white",
                         background_border = NA) {
@@ -34,8 +37,9 @@ ggalignment <- function(alignment,
   }
 
   ## Require x and y coordinates if there are 2+ image in 1 alignment
-  if (! "x" %in% colnames(alignment) &
-     ! "y" %in% colnames(alignment)) {
+  if (nrow(alignment) > 0 &&
+      ! "x" %in% colnames(alignment) &&
+      ! "y" %in% colnames(alignment)) {
     counts <-
       alignment %>%
       dplyr::group_by(alignment) %>%

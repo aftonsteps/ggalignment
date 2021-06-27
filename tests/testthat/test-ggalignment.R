@@ -45,4 +45,8 @@ test_that("error if alignmnet data missing 'img' column", {
 })
 
 
-## TODO add snapshot testing for rendered plot
+test_that("basic align_cats plot renders correctly", {
+  expect_snapshot_plot(ggalignment(align_cats),
+                       paste0(getwd(), "/snapshots"),
+                       "file3a6c4b213957.png")
+})
