@@ -10,6 +10,7 @@ ggalignment(
   line_color = "black",
   font_family = NULL,
   font_color = "black",
+  font_size = NULL,
   background_color = "white",
   background_border = NA
 )

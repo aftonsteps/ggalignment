@@ -10,8 +10,6 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE, echo = FALSE}
-new_wd <- gsub("/vignettes", "", getwd())
-new_wd
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -19,7 +17,6 @@ knitr::opts_chunk$set(
   fig.width = 1.8,
   fig.height = 1.8
 )
-knitr::opts_knit$set(root.dir = new_wd)
 ```
 
 
@@ -35,13 +32,27 @@ ggalignment(alignment = data.frame(img = character(),
 ```
 
 Typically, each box contains an image of a person or thing. Each element of the chart should have a value in the x direction
-that represents how lawful or chaotic they are, and a value in the y direction that represents how good or evil they are. In this example, I've used my cats, which you can find in the dataset-returning function `align_cats()` that is part of this package.
+that represents how lawful or chaotic they are, and a value in the y direction that represents how good or evil they are. In this example, I've used some images of my cats and my perception of their alignments.
 
 ## Simple Plotting Alignment
 To plot one image per box, you only need to pass in a `data.frame` containing two columns, `img` and `alignment`, which represent respectively the image path and the alignment name. For example:
 
+```{r load-data, include = FALSE, echo = FALSE, message = FALSE}
+oberon <- "img/obie.png"
+jerry <- "img/jerry.png"
+gray <- "img/gray 3.png"
+jeff <- "img/jeff 2.png"
+
+align_cats <-
+  data.frame(img = c(oberon, jeff, jerry, gray),
+             alignment = c("chaotic evil",
+                           "lawful neutral",
+                           "chaotic good",
+                           "chaotic neutral"),
+             stringsAsFactors = FALSE)
+```
+
 ```{r example-plotting-data}
-align_cats <- ggalignment::align_cats()
 align_cats
 ```
 If you pass this to the `ggalignment()` function, it will plot each of these images in the center of each box.
@@ -53,11 +64,10 @@ ggalignment(align_cats, font_size = 3)
 You can also provide images of different shapes (not just circles) and these will likewise center on the origin or use the `x` and `y` columns if provided.
 
 ```{r example-plot-with-rect}
-path <- system.file(package = "ggalignment")
 align_cats_rect <-
   align_cats %>%
   dplyr::mutate(img = c(align_cats$img[1:3],
-                        paste0(path, "/img/gray 2.png")))
+                        "img/gray 2.png"))
 
 ggalignment(alignment = align_cats_rect, font_size = 3)
 ```
