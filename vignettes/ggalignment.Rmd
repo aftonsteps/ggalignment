@@ -57,7 +57,7 @@ path <- system.file(package = "ggalignment")
 align_cats_rect <-
   align_cats %>%
   dplyr::mutate(img = c(align_cats$img[1:3],
-                        paste0(path, "/img/gray 2.png")))
+                        paste0(path, "/img/gray_2.png")))
 
 ggalignment(alignment = align_cats_rect, font_size = 3)
 ```
