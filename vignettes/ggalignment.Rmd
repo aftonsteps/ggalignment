@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE, echo = FALSE}
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -32,8 +33,7 @@ ggalignment(alignment = data.frame(img = character(),
             font_size = 3)
 ```
 
-Typically, each box contains an image of a person or thing. Each element of the chart should have a value in the x direction
-that represents how lawful or chaotic they are, and a value in the y direction that represents how good or evil they are. In this example, I've used some images of my cats and my perception of their alignments.
+Typically, each box contains an image of a person or thing. Each element of the chart should have a value in the x direction that represents how lawful or chaotic they are, and a value in the y direction that represents how good or evil they are. In this example, I've used some images of my cats and my perception of their alignments. Apply onLoad magic to run the align_cats() function onLoad to convert it into a dataframe inside the package namespace.
 
 ## Simple Plotting Alignment
 To plot one image per box, you only need to pass in a `data.frame` containing two columns, `img` and `alignment`, which represent respectively the image path and the alignment name. For example:
@@ -65,13 +65,13 @@ ggalignment(align_cats, font_size = 3)
 You can also provide images of different shapes (not just circles) and these will likewise center on the origin or use the `x` and `y` columns if provided.
 
 ```{r example-plot-with-rect}
-align_cats_rect <-
+cats_rect <-
   align_cats %>%
   mutate(img = c(align_cats$img[1:3],
                  system.file("img/gray_2.png", package = "ggalignment")
   ))
 
-ggalignment(alignment = align_cats_rect, font_size = 3)
+ggalignment(alignment = cats_rect, font_size = 3)
 ```
 
 ## Plotting Alignment with Coordinates
@@ -80,22 +80,24 @@ If you have more than one image per alignment box, or if you would just like fur
 Within each box, the coordinate system extends from -1 to 1 in both axes, and is centered at the origin. We can modify the default plot by providing `x` and `y` columns.
 
 ```{r example-plot-with-coord}
-align_cats_with_coords <-
+cats_with_coords <-
   align_cats %>%
   mutate(x = c(0.5, -0.5, -0.5, 0.5),
                 y = c(-0.5, -0.5, 0.5, 0.5))
-ggalignment(alignment = align_cats_with_coords, font_size = 3)
+
+ggalignment(alignment = cats_with_coords, font_size = 3)
 ```
 
 This also works if there are multiple images per box, and `x` and `y` columns are required in this case to prevent two images occupying the same space at the origin and masking each other.
 
 ```{r multi-plot-example}
-align_cats_with_multi_image <-
+cats_with_multi_image <-
   align_cats %>%
   mutate(alignment = rep("chaotic neutral")) %>%
   mutate(x = c(0.5, -0.5, -0.5, 0.5),
                 y = c(-0.5, -0.5, 0.5, 0.5))
-ggalignment(alignment = align_cats_with_multi_image,
+
+ggalignment(alignment = cats_with_multi_image,
             font_size = 3)
 ```
 

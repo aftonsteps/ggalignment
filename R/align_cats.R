@@ -3,10 +3,10 @@
 #' Creates align cats data for use in example code
 #'
 #' @return align_cats, a data.frame containing example data
-#' @export
 #'
 #' @examples
-#' align_cats()
+#' align_cats
+#' @export align_cats
 align_cats <- function() {
 
   cats <- system.file(c("img/obie.png",
