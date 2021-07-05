@@ -12,7 +12,8 @@ align_cats <- function() {
   cats <- system.file(c("img/obie.png",
                         "img/jerry.png",
                         "img/gray.png",
-                        "img/jeff.png"))
+                        "img/jeff.png"),
+                      package = "ggalignment")
 
   align_cats <-
     data.frame(img = cats,
