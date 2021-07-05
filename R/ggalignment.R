@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-#' ggalignment(alignment = align_cats())
+#' ggalignment(alignment = align_cats)
 
 ggalignment <- function(alignment,
                         line_type = "dashed",
