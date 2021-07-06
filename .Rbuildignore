@@ -1,4 +1,10 @@
 ^.*\.Rproj$
+^\.Rhistory$
 ^\.Rproj\.user$
 ^doc$
 ^Meta$
+^LICENSE\.md$
+^data-raw$
+^\.git$
+^\.gitignore$
+afton_cats
