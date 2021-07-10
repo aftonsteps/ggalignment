@@ -10,13 +10,14 @@ ggalignment(
   line_color = "black",
   font_family = NULL,
   font_color = "black",
+  font_size = NULL,
   background_color = "white",
   background_border = NA
 )
 }
 \arguments{
 \item{alignment}{a data.frame containing the data to be plotted, requiring
-columns `img` (for image path) and `alignment`, and optionally `x` and `y`
+columns \code{img} (for image path) and \code{alignment}, and optionally \code{x} and \code{y}
 specifying the coordinates for each image, where each box has coordinate limits
 from -1 to 1 in both axes.}
 
