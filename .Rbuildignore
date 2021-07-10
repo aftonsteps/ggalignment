@@ -1,5 +1,10 @@
 ^.*\.Rproj$
+^\.Rhistory$
 ^\.Rproj\.user$
 ^doc$
 ^Meta$
 ^README\.Rmd$
+^LICENSE\.md$
+^data-raw$
+^\.git$
+^\.gitignore$
