@@ -18,9 +18,9 @@ align_cats <- function() {
   align_cats <-
     data.frame(img = cats,
                alignment = c("chaotic evil",
-                             "lawful neutral",
                              "chaotic good",
-                             "chaotic neutral"),
+                             "chaotic neutral",
+                             "lawful neutral"),
                stringsAsFactors = FALSE)
 
   return(align_cats)
