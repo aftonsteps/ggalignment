@@ -43,3 +43,14 @@ test_that("error if alignmnet data missing 'img' column", {
   expect_error(ggalignment(align_cats %>% dplyr::select(-img)),
                "alignment dataset requires columns 'img' and 'alignment'")
 })
+
+test_that("error if max_images_per_dim is not integer", {
+  expect_error(ggalignment(align_cats, max_images_per_dim = "boba"),
+               "max_images_per_dim must be of type numeric")
+})
+
+test_that("error if max_image_dim is not acceptable value", {
+  expect_error(ggalignment(align_cats, max_image_dim = "boba"),
+               "max_image_dim must be one of 'width' or 'height'")
+})
+
