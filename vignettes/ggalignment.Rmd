@@ -119,6 +119,20 @@ ggalignment(alignment = align_cats,
             max_images_per_dim = 4)
 ```
 
+## Customizing the Look
+You can change many things about the look of the chart, including 
+for the full list of acceptable arguments.
+font size, font family, font color, background color, line color, and line type for the facets. These are all passed to `ggplot()`, so see the documentation there
+
+```{r change-chart-color}
+ggalignment(alignment = align_cats,
+            line_type = "dotted",
+            line_color = "seagreen1",
+            background_color = "turquoise4",
+            font_color = "skyblue1",
+            font_size = 3)
+```
+
 ## Using Your Own Files
 If you want to use your own image files, just construct a data.frame containing an `img` column containing the file paths, an `alignment` column containing the alignments, and optionally `x` and `y` columns determining the location of each image within its alignment facet. If you have multiple images in a single alignment, `x` and `y` are required.
 
