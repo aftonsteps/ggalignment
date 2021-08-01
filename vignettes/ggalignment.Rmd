@@ -85,3 +85,65 @@ ggalignment(alignment = cats_with_multi_image,
             font_size = 3)
 ```
 
+
+## Controlling Image Size
+You can adjust the image size using the parameters 
+`max_images_per_dim` (defaults to "width") and `max_image_dim`. 
+`max_images_per_dim` controls how many images will fit per facet,
+defaulting to how many fit width-wise. Depending on the ratio
+of your images, you may want to switch `max_images_dim` to "height",
+which will control how many images will fit per facet height-wise. 
+Generally, you should pick the dimension that is larger.
+
+These two parameters allow you to adjust the image size. For example, if I use `max_images_per_dim = 1` with the default setting
+of `max_image_dim = "width"`, I will get an image that is the full width of the facet box. 
+
+
+```{r image-size-1-example}
+ggalignment(alignment = align_cats, 
+            font_size = 3,
+            max_images_per_dim = 1)
+```
+
+Setting `max_images_per_dim = 2` will cause the images to take up 1/2 the width of the facet box.
+```{r image-size-2-example}
+ggalignment(alignment = align_cats, 
+            font_size = 3,
+            max_images_per_dim = 2)
+```
+
+Likewise, `max_images_per_dim = 4` will yield images that are 1/4 the width of the facet box. Controlling the image size is useful if you have a lot of images in a single box, and the default of `max_images_per_dim = 2` will lead to overcrowding.
+```{r image-size-4-example}
+ggalignment(alignment = align_cats, 
+            font_size = 3,
+            max_images_per_dim = 4)
+```
+
+## Using Your Own Files
+If you want to use your own image files, just construct a data.frame containing an `img` column containing the file paths, an `alignment` column containing the alignments, and optionally `x` and `y` columns determining the location of each image within its alignment facet. If you have multiple images in a single alignment, `x` and `y` are required.
+
+First, let's look at an example with local files. We'll use the R logo and a portrait of my cat Oberon (thank you to artist ChargedAsylum for the portrait!).
+```{r local-file-example}
+local_example <-
+  data.frame(img = c("r_logo.png",
+                     "obie_portrait.png"),
+             alignment = c("lawful good",
+                           "chaotic neutral"))
+
+ggalignment(local_example,
+            font_size = 3)
+```
+
+You can also use a URL as your image path.
+```{r url-example}
+url_example <-
+  data.frame(img = c("https://www.r-project.org/Rlogo.png",
+                     "https://avatars.githubusercontent.com/u/18043377?v=4"),
+             alignment = c("lawful good",
+                           "chaotic neutral"))
+
+ggalignment(url_example,
+            font_size = 3)
+```
+
+
