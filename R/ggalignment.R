@@ -13,6 +13,7 @@
 #' to black, and must be a named color such as "black"
 #' @param font_family the font family to be used on the alignment labels
 #' @param font_color the font color to be used on the alignment labels
+#' @param font_size the size of the font used on the alignment labels
 #' @param background_color the background color for the entire plot, defaults to
 #' white and must be a named color such as "white"
 #' @param background_border the color of the solid-line bounding box on the entire

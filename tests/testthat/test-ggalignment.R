@@ -54,3 +54,9 @@ test_that("error if max_image_dim is not acceptable value", {
                "max_image_dim must be one of 'width' or 'height'")
 })
 
+test_that("testing a basic plot", {
+  basic_cat_chart <- ggalignment(align_cats)
+  vdiffr::expect_doppelganger("Basic alignment chart with cats",
+                              basic_cat_chart)
+})
+

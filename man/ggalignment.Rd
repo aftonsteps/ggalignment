@@ -12,7 +12,9 @@ ggalignment(
   font_color = "black",
   font_size = NULL,
   background_color = "white",
-  background_border = NA
+  background_border = NA,
+  max_images_per_dim = 2,
+  max_image_dim = "width"
 )
 }
 \arguments{
@@ -32,11 +34,20 @@ to black, and must be a named color such as "black"}
 
 \item{font_color}{the font color to be used on the alignment labels}
 
+\item{font_size}{the size of the font used on the alignment labels}
+
 \item{background_color}{the background color for the entire plot, defaults to
 white and must be a named color such as "white"}
 
 \item{background_border}{the color of the solid-line bounding box on the entire
 plot, defaults to NA and must be either NA or a named color such as "black"}
+
+\item{max_images_per_dim}{numeric representing the number of images that
+should fit in a single fact -- for example, if you want an image to take up
+half the width of the fact, use max_images_per_dim = 2}
+
+\item{max_image_dim}{one of "width" or "height", representing if the max_images_per_dim
+should count by width or height in the facet}
 }
 \value{
 a ggplot object containing the alignment chart
