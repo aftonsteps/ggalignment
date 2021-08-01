@@ -19,7 +19,8 @@ Imports:
 Suggests: 
     rmarkdown (>= 2.0.0),
     knitr (>= 1.0),
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    vdiffr
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
