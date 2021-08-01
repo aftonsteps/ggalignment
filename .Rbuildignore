@@ -8,3 +8,4 @@
 ^data-raw$
 ^\.git$
 ^\.gitignore$
+^\.github$

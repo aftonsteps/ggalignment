@@ -7,6 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R-CMD-check](https://github.com/aftonsteps/ggalignment/workflows/R-CMD-check/badge.svg)](https://github.com/aftonsteps/ggalignment/actions)
 <!-- badges: end -->
 
 The goal of ggalignment is to do one thing – create DnD-style alignment
@@ -30,13 +31,18 @@ This is a basic example which shows you how to use ggalignment:
 
 ``` r
 library(ggalignment)
-align_cats <- ggalignment::align_cats()
+align_cats <- align_cats
 align_cats
-#>                   img       alignment
-#> 1   inst/img/obie.png    chaotic evil
-#> 2 inst/img/jeff 2.png  lawful neutral
-#> 3  inst/img/jerry.png    chaotic good
-#> 4 inst/img/gray 3.png chaotic neutral
+#>                                                                    img
+#> 1  C:/Users/afton/Documents/R/win-library/3.6/ggalignment/img/obie.png
+#> 2 C:/Users/afton/Documents/R/win-library/3.6/ggalignment/img/jerry.png
+#> 3  C:/Users/afton/Documents/R/win-library/3.6/ggalignment/img/gray.png
+#> 4  C:/Users/afton/Documents/R/win-library/3.6/ggalignment/img/jeff.png
+#>         alignment
+#> 1    chaotic evil
+#> 2  lawful neutral
+#> 3    chaotic good
+#> 4 chaotic neutral
 ```
 
 ``` r

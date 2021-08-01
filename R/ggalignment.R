@@ -13,10 +13,16 @@
 #' to black, and must be a named color such as "black"
 #' @param font_family the font family to be used on the alignment labels
 #' @param font_color the font color to be used on the alignment labels
+#' @param font_size the size of the font used on the alignment labels
 #' @param background_color the background color for the entire plot, defaults to
 #' white and must be a named color such as "white"
 #' @param background_border the color of the solid-line bounding box on the entire
 #' plot, defaults to NA and must be either NA or a named color such as "black"
+#' @param max_images_per_dim numeric representing the number of images that
+#' should fit in a single fact -- for example, if you want an image to take up
+#' half the width of the fact, use max_images_per_dim = 2
+#' @param max_image_dim one of "width" or "height", representing if the max_images_per_dim
+#' should count by width or height in the facet
 #'
 #' @return a ggplot object containing the alignment chart
 #' @export
@@ -31,7 +37,9 @@ ggalignment <- function(alignment,
                         font_color = "black",
                         font_size = NULL,
                         background_color = "white",
-                        background_border = NA) {
+                        background_border = NA,
+                        max_images_per_dim = 2,
+                        max_image_dim = "width") {
   ## Check for column names
   if (! "alignment" %in% colnames(alignment) |
       ! "img" %in% colnames(alignment)) {
@@ -51,6 +59,18 @@ ggalignment <- function(alignment,
       stop("Columns 'x' and 'y' required if multiple images per alignment")
     }
   }
+
+  ## Check that max_images_per_dim and max_image_dim are correct classes
+  if (! is.numeric(max_images_per_dim)) {
+    stop("max_images_per_dim must be of type numeric")
+  }
+
+  if (! is.character(max_image_dim) || length(max_image_dim) != 1 ||
+      ! max_image_dim %in% c("height", "width")) {
+    stop("max_image_dim must be one of 'width' or 'height'")
+  }
+
+  size <- 1/max_images_per_dim
 
   alignment_data <-
     alignment %>%
@@ -78,7 +98,9 @@ ggalignment <- function(alignment,
                                            image = img)) +
     ggplot2::scale_y_continuous(n.breaks = 20) +
     ggplot2::facet_wrap(~alignment, nrow = 3) +
-    ggimage::geom_image(size = 0.5, na.rm = TRUE) +
+    ggimage::geom_image(size = size,
+                        by = max_image_dim,
+                        na.rm = TRUE) +
     ggplot2::coord_fixed(xlim = c(-1, 1),
                          ylim = c(-1, 1)) +
     ggplot2::theme_void() +
