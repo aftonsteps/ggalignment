@@ -15,6 +15,7 @@ Imports:
     dplyr (>= 1.0.0),
     ggimage (>= 0.2.0),
     ggplot2 (>= 3.3.0),
+    rlang,
     magrittr (>= 1.0.0)
 Suggests: 
     rmarkdown (>= 2.0.0),
