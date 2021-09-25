@@ -1,6 +1,6 @@
-#' ggalignment
-#'
 #' Creates a D&D alignment chart
+#'
+#' The primary function of the package, this function creates
 #'
 #' @param alignment a data.frame containing the data to be plotted, requiring
 #' columns `img` (for image path) and `alignment`, and optionally `x` and `y`
@@ -24,11 +24,15 @@
 #' @param max_image_dim one of "width" or "height", representing if the max_images_per_dim
 #' should count by width or height in the facet
 #'
-#' @return a ggplot object containing the alignment chart
+#' @return a ggplot containing the alignment chart
+#'
 #' @export
 #'
 #' @examples
-#' ggalignment(alignment = align_cats)
+#' \donttest{
+#'   align_cats <- example_cats()
+#'   ggalignment(alignment = align_cats)
+#' }
 
 ggalignment <- function(alignment,
                         line_type = "dashed",
@@ -93,9 +97,9 @@ ggalignment <- function(alignment,
 
   g <-
     ggplot2::ggplot(data = alignment_data,
-                    mapping = ggplot2::aes(x = x,
-                                           y = y,
-                                           image = img)) +
+                    mapping = ggplot2::aes(x = .data$x,
+                                           y = .data$y,
+                                           image = .data$img)) +
     ggplot2::scale_y_continuous(n.breaks = 20) +
     ggplot2::facet_wrap(~alignment, nrow = 3) +
     ggimage::geom_image(size = size,

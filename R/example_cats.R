@@ -1,13 +1,14 @@
-#' Align Cats
+#' Example Cats
 #'
-#' Creates align cats data for use in example code
+#' Creates cat data with alignments for use in examples
 #'
-#' @return align_cats, a data.frame containing example data
+#' @return a data.frame containing example data for cats
 #'
 #' @examples
-#' align_cats
-#' @export align_cats
-align_cats <- function() {
+#' example_cats()
+#'
+#' @export
+example_cats <- function() {
 
   cats <- system.file(c("img/obie.png",
                         "img/jerry.png",

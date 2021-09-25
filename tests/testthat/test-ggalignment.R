@@ -1,3 +1,5 @@
+align_cats <- example_cats()
+
 test_that("plotting works without x, y coords provided", {
   expect_error(ggalignment(align_cats), NA)
 })
