@@ -1,0 +1,18 @@
+url: https://aftonsteps.github.io/ggalignment
+
+reference:
+- title: Main
+  desc: These are the primary functions of {ggalignment}.
+  contents:
+  - "ggalignment"
+  - "example_cats"
+  - "alignment_vals"
+
+
+authors:
+  Afton Coombs:
+    href: https://twitter.com/aftonsteps
+
+template:
+  params:
+    bootswatch: cosmo
