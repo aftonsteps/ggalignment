@@ -16,18 +16,18 @@ knitr::opts_chunk$set(
 # ggalignment
 
 <!-- badges: start -->
-`r usethis::use_lifecycle_badge("experimental")`
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R-CMD-check](https://github.com/aftonsteps/ggalignment/workflows/R-CMD-check/badge.svg)](https://github.com/aftonsteps/ggalignment/actions)
+
 <!-- badges: end -->
 
 The goal of ggalignment is to do one thing -- create DnD-style alignment charts! These charts range from lawful to neutral to chaotic in one dimension, and good to neutral to evil in the other. Pictures or text can be placed in each of boxes to indicate the alignment.
 
 ## Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/aftonsteps/ggalignment) with:
 
-``` r
+```{r eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("aftonsteps/ggalignment")
 ```
@@ -37,10 +37,11 @@ This is a basic example which shows you how to use ggalignment:
 
 ```{r example-setup}
 library(ggalignment)
-align_cats <- align_cats
-align_cats
+
+# an example dataframe of cats!
+align_cats <- example_cats()
 ```
 
 ```{r example-chart}
-ggalignment(align_cats, font_size = 3)
+ggalignment(align_cats)
 ```

@@ -39,7 +39,7 @@ Typically, each box contains an image of a person or thing. Each element of the 
 To plot one image per box, you only need to pass in a `data.frame` containing two columns, `img` and `alignment`, which represent respectively the image path and the alignment name. For example:
 
 ```{r example-plotting-data}
-ggalignment::align_cats
+align_cats <- example_cats()
 ```
 If you pass this to the `ggalignment()` function, it will plot each of these images in the center of each box.
 

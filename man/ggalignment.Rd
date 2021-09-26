@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggalignment.R
 \name{ggalignment}
 \alias{ggalignment}
-\title{ggalignment}
+\title{Creates a D&D alignment chart}
 \usage{
 ggalignment(
   alignment,
@@ -50,11 +50,14 @@ half the width of the fact, use max_images_per_dim = 2}
 should count by width or height in the facet}
 }
 \value{
-a ggplot object containing the alignment chart
+a ggplot containing the alignment chart
 }
 \description{
-Creates a D&D alignment chart
+The primary function of the package, this function creates a D&D alignment chart from a dataframe with img, x, and y columns!
 }
 \examples{
-ggalignment(alignment = align_cats)
+\donttest{
+  align_cats <- example_cats()
+  ggalignment(alignment = align_cats)
+}
 }
