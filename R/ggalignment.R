@@ -24,6 +24,8 @@
 #' @param max_image_dim one of "width" or "height", representing if the max_images_per_dim
 #' should count by width or height in the facet
 #'
+#' @importFrom rlang .data
+#'
 #' @return a ggplot object containing the alignment chart
 #' @export
 #'
@@ -93,9 +95,9 @@ ggalignment <- function(alignment,
 
   g <-
     ggplot2::ggplot(data = alignment_data,
-                    mapping = ggplot2::aes(x = x,
-                                           y = y,
-                                           image = img)) +
+                    mapping = ggplot2::aes(x = .data$x,
+                                           y = .data$y,
+                                           image = .data$img)) +
     ggplot2::scale_y_continuous(n.breaks = 20) +
     ggplot2::facet_wrap(~alignment, nrow = 3) +
     ggimage::geom_image(size = size,
