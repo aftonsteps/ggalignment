@@ -31,6 +31,13 @@ You can install the development version from [GitHub](https://github.com/aftonst
 # install.packages("devtools")
 devtools::install_github("aftonsteps/ggalignment")
 ```
+
+You can install the release version from [CRAN](https://cran.r-project.org/web/packages/ggalignment/index.html) with:
+
+```{r eval = FALSE}
+install.packages("ggalignment")
+```
+
 ## Example
 
 This is a basic example which shows you how to use ggalignment:

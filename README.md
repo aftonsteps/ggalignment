@@ -12,7 +12,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The goal of ggalignment is to do one thing – create DnD-style alignment
-charts! These charts range from lawful to neutral to chaotic in one
+charts\! These charts range from lawful to neutral to chaotic in one
 dimension, and good to neutral to evil in the other. Pictures or text
 can be placed in each of boxes to indicate the alignment.
 
@@ -24,6 +24,14 @@ You can install the development version from
 ``` r
 # install.packages("devtools")
 devtools::install_github("aftonsteps/ggalignment")
+```
+
+You can install the release version from
+[CRAN](https://cran.r-project.org/web/packages/ggalignment/index.html)
+with:
+
+``` r
+install.packages("ggalignment")
 ```
 
 ## Example
