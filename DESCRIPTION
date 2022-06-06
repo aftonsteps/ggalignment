@@ -18,7 +18,7 @@ Description: 'D&D' alignment charts show 9 boxes with values for good
     and alignment values.
 License: MIT + file LICENSE
 Depends: 
-    R (>= 3.4)
+    R (>= 4.3)
 Imports: 
     dplyr (>= 1.0.0),
     ggimage (>= 0.2.0),
@@ -34,6 +34,6 @@ Suggests:
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
