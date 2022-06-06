@@ -148,3 +148,15 @@ ggalignment(local_example,
 ```
 
 You can also use a URL as your image path.
+```{r url-example}
+url_example <-
+  data.frame(img = c("https://www.r-project.org/Rlogo.png",
+                     "https://avatars.githubusercontent.com/u/18043377?v=4"),
+             alignment = c("lawful good",
+                           "chaotic neutral"))
+
+ggalignment(url_example,
+            font_size = 3)
+```
+
+
