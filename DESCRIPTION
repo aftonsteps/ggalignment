@@ -1,7 +1,7 @@
 Type: Package
 Package: ggalignment
 Title: Plots 'D&D'-Style Alignment Charts
-Version: 1.0.0
+Version: 1.0.0.9001
 Authors@R: 
     c(person(given = "Afton",
             family = "Coombs",
