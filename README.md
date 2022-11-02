@@ -27,7 +27,7 @@ devtools::install_github("aftonsteps/ggalignment")
 ```
 
 You can install the release version from
-[CRAN](https://cran.r-project.org/web/packages/ggalignment/index.html)
+[CRAN](https://CRAN.R-project.org/package=ggalignment)
 with:
 
 ``` r
