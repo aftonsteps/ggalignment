@@ -32,7 +32,7 @@ You can install the development version from [GitHub](https://github.com/aftonst
 devtools::install_github("aftonsteps/ggalignment")
 ```
 
-You can install the release version from [CRAN](https://cran.r-project.org/web/packages/ggalignment/index.html) with:
+You can install the release version from [CRAN](https://CRAN.R-project.org/package=ggalignment) with:
 
 ```{r eval = FALSE}
 install.packages("ggalignment")
