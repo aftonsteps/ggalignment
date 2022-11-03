@@ -8,4 +8,4 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
-* Resubmitting because my first submission was > 5MB (sorry!)
+* Resubmitting because the package was archived due to downloading internet resources without failing gracefully.
